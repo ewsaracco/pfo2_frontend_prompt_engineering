@@ -13,7 +13,7 @@ Acceso al proyecto en producción a través del siguiente enlace de Vercel (el c
 * **Despliegue en Vercel:** [https://pfo2-frontend-prompt-engineering.vercel.app/](https://pfo2-frontend-prompt-engineering.vercel.app/)
 
 ## Prompt Exacto Utilizado
-A continuación se transcribe la estructura y los requisitos del prompt de ingeniería utilizado de forma idéntica para evaluar a ambos agentes de IA (OpenAI ChatGPT (Plan Gratuito - GPT-5.5) y Cursor (Plan Gratuito - Composer 2.5 Fast)):
+A continuación se transcribe la estructura y los requisitos del prompt de ingeniería utilizado de forma idéntica para evaluar a ambos agentes de IA, OpenAI ChatGPT (Plan Gratuito - GPT-5.5) y Cursor (Plan Gratuito - Composer 2.5 Fast):
 
 ```text
 Actúa como un Desarrollador Frontend Senior experto en UI/UX, especializado en HTML5 semántico y CSS3 moderno. 
