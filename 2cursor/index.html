@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VP Consulting — Consultora IT</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CSS Reset & Base ===== */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            overflow-x: hidden;
+        }
+
+        body {
+            font-family: 'Plus Jakarta Sans', sans-serif;
+            background-color: #f8fafc;
+            color: #0f172a;
+            line-height: 1.6;
+            overflow-x: hidden;
+            min-width: 0;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        /* ===== Layout Utilities ===== */
+        .container {
+            width: 100%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1.5rem;
+        }
+
+        .section {
+            padding: 5rem 0;
+        }
+
+        .section-title {
+            font-size: clamp(1.75rem, 4vw, 2.25rem);
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 1rem;
+            letter-spacing: -0.02em;
+        }
+
+        .section-subtitle {
+            font-size: 1.05rem;
+            color: #64748b;
+            max-width: 600px;
+            margin-bottom: 3rem;
+        }
+
+        /* ===== Header ===== */
+        .site-header {
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            background: rgba(248, 250, 252, 0.92);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid #e2e8f0;
+        }
+
+        .header-inner {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1rem;
+            padding: 1rem 1.5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .header-top-row {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 1rem;
+            width: 100%;
+        }
+
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            font-size: 0.875rem;
+            font-weight: 600;
+            color: #64748b;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: 1px solid #e2e8f0;
+            background: #ffffff;
+            transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+            white-space: nowrap;
+        }
+
+        .back-link:hover {
+            color: #2563eb;
+            border-color: #2563eb;
+            background: #eff6ff;
+            transform: translateX(-2px);
+        }
+
+        .logo {
+            font-size: 1.35rem;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -0.03em;
+            transition: color 0.25s ease;
+        }
+
+        .logo span {
+            color: #2563eb;
+        }
+
+        .logo:hover {
+            color: #2563eb;
+        }
+
+        .main-nav {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            gap: 0.25rem 1.5rem;
+            margin-left: auto;
+        }
+
+        .main-nav a {
+            font-size: 0.95rem;
+            font-weight: 600;
+            color: #475569;
+            padding: 0.4rem 0;
+            position: relative;
+            transition: color 0.25s ease;
+        }
+
+        .main-nav a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #2563eb;
+            transition: width 0.25s ease;
+        }
+
+        .main-nav a:hover {
+            color: #2563eb;
+        }
+
+        .main-nav a:hover::after {
+            width: 100%;
+        }
+
+        /* ===== Hero Section ===== */
+        .hero {
+            padding: 6rem 0 5rem;
+            background: linear-gradient(160deg, #eff6ff 0%, #f8fafc 45%, #f1f5f9 100%);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: -40%;
+            right: -10%;
+            width: 55%;
+            max-width: 600px;
+            aspect-ratio: 1;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.12) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero::after {
+            content: '';
+            position: absolute;
+            bottom: -30%;
+            left: -5%;
+            width: 40%;
+            max-width: 400px;
+            aspect-ratio: 1;
+            background: radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 720px;
+        }
+
+        .hero-badge {
+            display: inline-block;
+            font-size: 0.8rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+            color: #2563eb;
+            background: rgba(37, 99, 235, 0.1);
+            padding: 0.4rem 1rem;
+            border-radius: 100px;
+            margin-bottom: 1.5rem;
+        }
+
+        .hero-title {
+            font-size: clamp(2.25rem, 6vw, 3.5rem);
+            font-weight: 800;
+            line-height: 1.15;
+            letter-spacing: -0.03em;
+            color: #0f172a;
+            margin-bottom: 1.25rem;
+        }
+
+        .hero-title .highlight {
+            color: #2563eb;
+        }
+
+        .hero-description {
+            font-size: clamp(1rem, 2.5vw, 1.2rem);
+            color: #64748b;
+            margin-bottom: 2.5rem;
+            max-width: 580px;
+            line-height: 1.7;
+        }
+
+        /* ===== Buttons ===== */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            font-family: inherit;
+            font-size: 1rem;
+            font-weight: 700;
+            padding: 0.9rem 2rem;
+            border-radius: 10px;
+            border: none;
+            cursor: pointer;
+            transition: background 0.25s ease, transform 0.25s ease, box-shadow 0.25s ease, color 0.25s ease;
+        }
+
+        .btn-primary {
+            background: #2563eb;
+            color: #ffffff;
+            box-shadow: 0 4px 14px rgba(37, 99, 235, 0.35);
+        }
+
+        .btn-primary:hover {
+            background: #1d4ed8;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.4);
+        }
+
+        .btn-primary:active {
+            transform: translateY(0);
+        }
+
+        /* ===== About Section ===== */
+        .about {
+            background: #ffffff;
+        }
+
+        .about-content {
+            max-width: 800px;
+        }
+
+        .about-text {
+            font-size: 1.1rem;
+            color: #475569;
+            line-height: 1.8;
+        }
+
+        /* ===== Services Section ===== */
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .service-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 2rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 32px rgba(15, 23, 42, 0.08);
+            border-color: #bfdbfe;
+        }
+
+        .service-icon {
+            width: 52px;
+            height: 52px;
+            background: linear-gradient(135deg, #2563eb, #3b82f6);
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1.25rem;
+            font-size: 1.5rem;
+            color: #ffffff;
+        }
+
+        .service-card h3 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #0f172a;
+            margin-bottom: 0.75rem;
+        }
+
+        .service-card p {
+            font-size: 0.95rem;
+            color: #64748b;
+            line-height: 1.7;
+        }
+
+        /* ===== Testimonials Section ===== */
+        .testimonials {
+            background: #ffffff;
+        }
+
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .testimonial-card {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 2rem;
+            transition: box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+
+        .testimonial-card:hover {
+            box-shadow: 0 8px 24px rgba(15, 23, 42, 0.06);
+            border-color: #cbd5e1;
+        }
+
+        .testimonial-stars {
+            color: #2563eb;
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .testimonial-text {
+            font-size: 0.98rem;
+            color: #475569;
+            line-height: 1.75;
+            margin-bottom: 1.5rem;
+            font-style: italic;
+        }
+
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .author-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #2563eb, #60a5fa);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 700;
+            color: #ffffff;
+            font-size: 0.9rem;
+            flex-shrink: 0;
+        }
+
+        .author-info strong {
+            display: block;
+            font-size: 0.95rem;
+            color: #0f172a;
+        }
+
+        .author-info span {
+            font-size: 0.85rem;
+            color: #64748b;
+        }
+
+        /* ===== Contact Section ===== */
+        .contact-wrapper {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 3rem;
+            max-width: 700px;
+        }
+
+        .contact-form {
+            display: flex;
+            flex-direction: column;
+            gap: 1.25rem;
+        }
+
+        .form-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .form-group label {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #334155;
+        }
+
+        .form-group input,
+        .form-group textarea {
+            font-family: inherit;
+            font-size: 1rem;
+            padding: 0.85rem 1rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 10px;
+            background: #ffffff;
+            color: #0f172a;
+            transition: border-color 0.25s ease, box-shadow 0.25s ease;
+            width: 100%;
+            min-width: 0;
+        }
+
+        .form-group input:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.15);
+        }
+
+        .form-group textarea {
+            min-height: 140px;
+            resize: vertical;
+        }
+
+        .contact-form .btn-primary {
+            width: 100%;
+            margin-top: 0.5rem;
+        }
+
+        /* ===== Footer ===== */
+        .site-footer {
+            background: #0f172a;
+            color: #94a3b8;
+            padding: 2.5rem 0;
+        }
+
+        .footer-inner {
+            display: flex;
+            flex-wrap: wrap;
+            align-items: center;
+            justify-content: space-between;
+            gap: 1.5rem;
+        }
+
+        .footer-copyright {
+            font-size: 0.9rem;
+        }
+
+        .footer-social {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 1rem;
+        }
+
+        .footer-social a {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #cbd5e1;
+            padding: 0.5rem 1rem;
+            border-radius: 8px;
+            border: 1px solid #334155;
+            transition: color 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+        }
+
+        .footer-social a:hover {
+            color: #ffffff;
+            border-color: #2563eb;
+            background: rgba(37, 99, 235, 0.15);
+        }
+
+        /* ===== Responsive Adjustments ===== */
+        @media (min-width: 768px) {
+            .header-top-row {
+                width: auto;
+                flex: 1;
+            }
+
+            .header-inner {
+                flex-wrap: nowrap;
+            }
+        }
+
+        @media (max-width: 767px) {
+            .section {
+                padding: 3.5rem 0;
+            }
+
+            .hero {
+                padding: 4rem 0 3.5rem;
+            }
+
+            .header-inner {
+                flex-direction: column;
+                align-items: stretch;
+            }
+
+            .header-top-row {
+                justify-content: space-between;
+            }
+
+            .main-nav {
+                width: 100%;
+                justify-content: center;
+                margin-left: 0;
+                padding-top: 0.5rem;
+                border-top: 1px solid #e2e8f0;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .footer-social {
+                justify-content: center;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                padding: 0 1rem;
+            }
+
+            .main-nav {
+                gap: 0.5rem 1rem;
+            }
+
+            .main-nav a {
+                font-size: 0.875rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Site Header with navigation -->
+    <header class="site-header">
+        <div class="header-inner">
+            <div class="header-top-row">
+                <a href="../index.html" class="back-link" aria-label="Volver a la portada principal">← Volver a Portada</a>
+                <a href="#inicio" class="logo" aria-label="VP Consulting - Inicio">VP <span>Consulting</span></a>
+            </div>
+            <nav class="main-nav" aria-label="Navegación principal">
+                <a href="#inicio">Inicio</a>
+                <a href="#servicios">Servicios</a>
+                <a href="#sobre-nosotros">Sobre Nosotros</a>
+                <a href="#contacto">Contacto</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="inicio" class="hero section">
+            <div class="container">
+                <div class="hero-content">
+                    <span class="hero-badge">Consultora IT de alto rendimiento</span>
+                    <h1 class="hero-title">
+                        Transformamos tu negocio con <span class="highlight">tecnología inteligente</span>
+                    </h1>
+                    <p class="hero-description">
+                        En VP Consulting diseñamos soluciones de infraestructura en la nube, automatización de procesos y desarrollo a medida que impulsan la eficiencia y el crecimiento de tu empresa.
+                    </p>
+                    <a href="#contacto" class="btn btn-primary">Solicitar Consultoría</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="sobre-nosotros" class="about section">
+            <div class="container">
+                <h2 class="section-title">Sobre Nosotros</h2>
+                <div class="about-content">
+                    <p class="about-text">
+                        Nuestra misión es acompañar a las organizaciones en su transformación digital, combinando experiencia técnica con una visión estratégica. En VP Consulting creemos que la tecnología debe ser un catalizador de resultados: simplificamos lo complejo, automatizamos lo repetitivo y construimos soluciones a medida que se adaptan a las necesidades reales de cada cliente. Trabajamos con transparencia, agilidad y un compromiso genuino por el éxito de los proyectos que lideramos.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services Section -->
+        <section id="servicios" class="section">
+            <div class="container">
+                <h2 class="section-title">Nuestros Servicios</h2>
+                <p class="section-subtitle">Soluciones integrales para llevar tu infraestructura y procesos al siguiente nivel.</p>
+                <div class="services-grid">
+                    <article class="service-card">
+                        <div class="service-icon" aria-hidden="true">☁</div>
+                        <h3>Infraestructura en la Nube</h3>
+                        <p>
+                            Diseñamos, migramos y optimizamos arquitecturas cloud escalables y seguras. Desde la planificación hasta el despliegue, garantizamos alta disponibilidad y reducción de costos operativos.
+                        </p>
+                    </article>
+                    <article class="service-card">
+                        <div class="service-icon" aria-hidden="true">⚙</div>
+                        <h3>Automatización de Procesos</h3>
+                        <p>
+                            Eliminamos tareas manuales repetitivas mediante flujos automatizados e integraciones inteligentes. Aumentamos la productividad de tu equipo y minimizamos errores humanos en operaciones críticas.
+                        </p>
+                    </article>
+                    <article class="service-card">
+                        <div class="service-icon" aria-hidden="true">⟨/⟩</div>
+                        <h3>Desarrollo a Medida</h3>
+                        <p>
+                            Creamos aplicaciones web y sistemas personalizados alineados con los objetivos de tu negocio. Código limpio, arquitectura moderna y entregas iterativas para resultados tangibles desde el primer sprint.
+                        </p>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials Section -->
+        <section class="testimonials section">
+            <div class="container">
+                <h2 class="section-title">Lo que dicen nuestros clientes</h2>
+                <p class="section-subtitle">Empresas que confiaron en nosotros para impulsar su transformación tecnológica.</p>
+                <div class="testimonials-grid">
+                    <article class="testimonial-card">
+                        <div class="testimonial-stars" aria-label="5 estrellas">★★★★★</div>
+                        <p class="testimonial-text">
+                            "VP Consulting migró nuestra infraestructura completa a la nube en tiempo récord. El equipo fue proactivo, transparente y siempre disponible para resolver cualquier inconveniente. Hoy operamos con mayor estabilidad y un 40% menos de costos."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar" aria-hidden="true">MR</div>
+                            <div class="author-info">
+                                <strong>María Rodríguez</strong>
+                                <span>Directora de Operaciones, LogiTech SA</span>
+                            </div>
+                        </div>
+                    </article>
+                    <article class="testimonial-card">
+                        <div class="testimonial-stars" aria-label="5 estrellas">★★★★★</div>
+                        <p class="testimonial-text">
+                            "La automatización de nuestros procesos de facturación transformó por completo la productividad del departamento financiero. VP Consulting entendió nuestras necesidades desde el primer día y entregó una solución robusta y fácil de mantener."
+                        </p>
+                        <div class="testimonial-author">
+                            <div class="author-avatar" aria-hidden="true">CG</div>
+                            <div class="author-info">
+                                <strong>Carlos Gutiérrez</strong>
+                                <span>Gerente de TI, Finanzas del Sur</span>
+                            </div>
+                        </div>
+                    </article>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contacto" class="section">
+            <div class="container">
+                <h2 class="section-title">Contacto</h2>
+                <p class="section-subtitle">Cuéntanos sobre tu proyecto y te responderemos en menos de 24 horas.</p>
+                <div class="contact-wrapper">
+                    <form class="contact-form" action="#" method="post" aria-label="Formulario de contacto">
+                        <div class="form-group">
+                            <label for="contact-name">Nombre</label>
+                            <input
+                                type="text"
+                                id="contact-name"
+                                name="name"
+                                placeholder="Tu nombre completo"
+                                required
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-email">Email</label>
+                            <input
+                                type="email"
+                                id="contact-email"
+                                name="email"
+                                placeholder="tu@email.com"
+                                required
+                            >
+                        </div>
+                        <div class="form-group">
+                            <label for="contact-message">Mensaje</label>
+                            <textarea
+                                id="contact-message"
+                                name="message"
+                                placeholder="Describe brevemente tu proyecto o consulta..."
+                                required
+                            ></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Enviar Mensaje</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Site Footer -->
+    <footer class="site-footer">
+        <div class="container footer-inner">
+            <p class="footer-copyright">
+                &copy; 2026 VP Consulting. Todos los derechos reservados.
+            </p>
+            <nav class="footer-social" aria-label="Redes sociales">
+                <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+                <a href="https://twitter.com" target="_blank" rel="noopener noreferrer">Twitter</a>
+            </nav>
+        </div>
+    </footer>
+
+</body>
+</html>
